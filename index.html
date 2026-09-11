@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resonance Lab | Dr. M. Waseem</title>
+  <meta name="description" content="Explore resonance, driving frequency and damping with an interactive forced-oscillation simulation.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%230b1220'/%3E%3Cpath d='M8 33h9l4-16 8 32 8-32 7 28 4-12h8' fill='none' stroke='%2362d9f5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="#">WASEEM PHYSICS</a>
+    <span class="course">A LEVEL PHYSICS / OSCILLATIONS</span>
+  </header>
+
+  <main>
+    <section class="tutoring-banner" aria-labelledby="tutoring-title">
+      <div>
+        <p class="eyebrow">ONLINE TUTORING</p>
+        <h2 id="tutoring-title">IGCSE &amp; A-Level Physics · GCSE Mathematics</h2>
+        <p>For online lessons and tutoring enquiries, contact Dr. M. Waseem.</p>
+      </div>
+      <a class="tutoring-contact" href="mailto:waseem.tutor@outlook.com">waseem.tutor@outlook.com ↗</a>
+    </section>
+
+    <div class="heading">
+      <div>
+        <p class="eyebrow">INTERACTIVE LAB 04</p>
+        <h1>Resonance<span>.</span></h1>
+      </div>
+      <span class="badge" id="regionBadge">Below resonance</span>
+    </div>
+
+    <section class="workspace">
+      <aside class="panel controls">
+        <p class="eyebrow">01 · SET THE SYSTEM</p>
+        <h2>Drive the oscillator</h2>
+
+        <label for="natural">Natural frequency, f₀ <output id="naturalOut"></output></label>
+        <input id="natural" type="range" min="0.5" max="2" step="0.1" value="1">
+
+        <label for="driving">Driving frequency, f <output id="drivingOut"></output></label>
+        <input id="driving" type="range" min="0.1" max="3" step="0.05" value="0.5">
+
+        <div class="quick-buttons" aria-label="Set driving frequency relative to natural frequency">
+          <button data-ratio="0.5">Below</button>
+          <button data-ratio="1">At f₀</button>
+          <button data-ratio="1.5">Above</button>
+        </div>
+
+        <label for="damping">Damping ratio, ζ <output id="dampingOut"></output></label>
+        <input id="damping" type="range" min="0.02" max="0.4" step="0.01" value="0.12">
+
+        <label for="speed">Playback speed</label>
+        <select id="speed">
+          <option value="0.25">¼ speed</option>
+          <option value="0.5">½ speed</option>
+          <option value="1" selected>Normal speed</option>
+        </select>
+
+        <div class="buttons">
+          <button id="play" class="primary">Play</button>
+          <button id="reset">Reset</button>
+        </div>
+
+        <div class="constants">
+          <div>Frequency ratio, f/f₀ <strong id="ratioRead"></strong></div>
+          <div>Response amplitude <strong id="amplitudeRead"></strong></div>
+          <div>Phase lag, δ <strong id="phaseRead"></strong></div>
+        </div>
+      </aside>
+
+      <section class="panel simulation">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">02 · WATCH THE RESPONSE</p>
+            <h2>Forced oscillator</h2>
+          </div>
+          <span id="clock">t = 0.00 s</span>
+        </div>
+        <canvas id="oscillator" aria-label="A driven spring-mass oscillator with driving force and displacement arrows"></canvas>
+        <div class="legend">
+          <span class="force">● Driving force</span>
+          <span class="response">● Displacement</span>
+        </div>
+        <div class="meter">
+          <div class="meter-label"><span>Current response</span><strong id="meterValue"></strong></div>
+          <div class="meter-track"><div id="meterBar"></div><span class="marker" title="Static displacement amplitude"></span></div>
+        </div>
+        <p class="explain" id="explain"></p>
+      </section>
+    </section>
+
+    <p class="eyebrow section-label">03 · FIND RESONANCE</p>
+    <section class="analysis-grid">
+      <article class="panel graph-panel">
+        <div class="section-title">
+          <div>
+            <h2>Amplitude response</h2>
+            <p>Move the driving-frequency slider or drag the point on the curve.</p>
+          </div>
+          <span class="formula">A/Aₛ = 1/√[(1−r²)²+(2ζr)²]</span>
+        </div>
+        <canvas id="responseGraph" aria-label="Response amplitude against driving frequency graph"></canvas>
+      </article>
+
+      <article class="panel concept-panel">
+        <h2>What the graph shows</h2>
+        <div class="concept"><span class="number">1</span><p><strong>Below resonance</strong><br>The oscillator follows the driving force with a relatively small phase lag.</p></div>
+        <div class="concept"><span class="number">2</span><p><strong>Near resonance</strong><br>Energy transfer is most effective and the response amplitude is greatest.</p></div>
+        <div class="concept"><span class="number">3</span><p><strong>Above resonance</strong><br>The amplitude falls and displacement becomes nearly opposite in phase to the force.</p></div>
+        <p class="definition"><strong>Effect of damping:</strong> greater damping lowers and broadens the resonance peak.</p>
+      </article>
+    </section>
+
+    <footer>© 2026 Dr. M. Waseem</footer>
+  </main>
+</body>
+</html>
